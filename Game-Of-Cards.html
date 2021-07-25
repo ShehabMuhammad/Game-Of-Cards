@@ -53,7 +53,7 @@ var createImage=(name)=>{
     image.style.width = "50px";
     image.style.height = "75px";
     image.ondragstart = (ev)=>{drag(ev);}
-
+        
     image.draggable = true;
 
     return image;
@@ -123,7 +123,7 @@ if(!sum){
 if(c == 'j'){
 let iter = board.children.length; let elementOrig = document.querySelector( "#"+ data  );
 if(iter == 0) {              
-elementOrig.draggable=()=>false;
+elementOrig.draggable=false;
 elementOrig.onselect=()=>false;
 elementOrig.ondragstart=()=>false;
 board.appendChild(elementOrig); obj.floor.push(data); 
@@ -153,7 +153,7 @@ if(obj.floor.length == 0) {           let y =document.querySelector('#bsrat'); y
  }
 else {   handCards.splice(handCards.indexOf(elementOrig.id),1); 
 
-elementOrig.draggable=()=>false;
+elementOrig.draggable=false;
 elementOrig.onselect=()=>false;
 elementOrig.ondragstart=()=>false;
 board.appendChild(elementOrig); floor.push(elementOrig.id);  }
@@ -256,7 +256,6 @@ if(bool){
 handCards.splice(handCards.indexOf(c.id), 1);
 c.draggable = false; c.ondragover = ()=>{return false;}
 
-c.draggable=()=>false;
 c.onselect=()=>false;
 c.ondragstart=()=>false;
     board.appendChild(  c ); 
@@ -347,7 +346,6 @@ if( handCards.length == 0 && otherCards.length == 0) {start();}
 let c = createImage(e);
 c.draggable = false; c.ondragover = ()=>{return false;}
 
-c.draggable=()=>false;
 c.onselect=()=>false;
 c.ondragstart=()=>false;
     Board.appendChild(c);
