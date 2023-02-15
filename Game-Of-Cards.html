@@ -1,4 +1,4 @@
-﻿
+
 <html>
     <head> 
 <link rel="icon" href="https://img1.wsimg.com/isteam/ip/74cefcc5-058c-4b60-8ee5-71bec277ef26/k1.jpg" type="image/jpg" sizes="16x16">
@@ -14,17 +14,19 @@
                 margin-bottom: 30px;
         }
 
-.card { display: inline-block; background-color: gray; width:100px; height: 150; 
-float:left;  margin-left: 15px; margin-top: 15px; margin-bottom: 50px;} 
 
-@media only screen and (max-width: 720px) {
 
-#board img {width:auto;height:auto;overflow:hidden;}
-#board {height:auto;overflow:hidden;}
+<html>
+    <head> 
+<link rel="icon" href="https://shehabmuhammad.github.io/Game-Of-Cards/docs/k1.jpg" type="image/jpg" sizes="16x16">
+
+        <style>
+* {overflow:hidden;
+  box-sizing: border-box;
 }
- 
-body { background-color: #f1f1f1 !important; }
-footer, .footer {z-index:5 !important; background-color:black !important;}
+img {cursor:grab;}
+button {cursor:pointer;}
+body { background-color: #f1f1f1 !important ; }
 img {
 transition:.5s;
 width:auto;margin-left:1vw;margin-right:1vw;
@@ -36,39 +38,13 @@ width:80% !important;height:80% !important;
 button:hover { 
 background-color: lightblue !important;
 color:#f1f1f1; } 
-.end a:not(:first-child) {   margin-left:3em;  }
-a {text-decoration:none;color:#333;}
-a:hover {color:lightblue;}
-li button {
-padding:0px;margin:0px;
-transition:.5s;
-border-top: transparent; border-right: transparent; border-bottom:solid 1px black; border-image: initial; border-left: 1px solid black; color: red; background-color: lightgray;
-width: 20% !important;}
-li button:hover {
-background-color:red;color:white;
-width: 30% !important;
-}
-li button:hover * {   width:100%;    }
-button {height:auto;width:auto;}
-      #info {
-            float:right; background: linear-gradient(to right, lightgray, white);
-            width: 15vw; height:20vw; margin-top:-100px;
-                margin-bottom: 30px;
-        }
-
-.card { display: inline-block; background-color: gray; width:100px; height: 150; 
-float:left;  margin-left: 15px; margin-top: 15px; margin-bottom: 50px;} 
-
-@media only screen and (max-width: 720px) {
-
-#board img {width:auto;height:auto;overflow:hidden;}
-#board {height:auto;overflow:hidden;}
-}
 </style>
         <script>
   'use strict';
 
- var c = ["0rd", "0bf", "0bc", "0rh", "1rd", "1bf", "1bc", "1rh", "2rd", "2bf", "2bc", "2rh", "3rd", "3bf", "3bc", "3rh", "4rd", "4bf", "4bc", "4rh", "5rd", "5bf", "5bc", "5rh", "6rd", "6bf", "6bc", "6rh", "7rd", "7bf", "7bc", "7rh", "8rd", "8bf", "8bc", "8rh", "9rd", "9bf", "9bc", "9rh", "j1", "j2", "j3", "j4", "q1", "q2", "q3", "q4", "k1", "k2", "k3", "k4"];
+ var c = ["0rd", "0bf", "0bc", "0rh", "1rd", "1bf", "1bc", "1rh", "2rd", "2bf", "2bc", "2rh", "3rd", "3bf", "3bc", "3rh", "4rd", "4bf", "4bc", "4rh", "5rd", "5bf", "5bc", "5rh", "6rd", "6bf", 
+
+"6bc", "6rh", "7rd", "7bf", "7bc", "7rh", "8rd", "8bf", "8bc", "8rh", "9rd", "9bf", "9bc", "9rh", "j1", "j2", "j3", "j4", "q1", "q2", "q3", "q4", "k1", "k2", "k3", "k4"];
 var cards = c.slice();
 var graveYard1=[];
 var graveYard2=[];
@@ -89,11 +65,11 @@ var rand;
 var createImage=(name)=>{
    let image = document.createElement("IMG");
     image.id = name;
-    image.src = "https://img1.wsimg.com/isteam/ip/74cefcc5-058c-4b60-8ee5-71bec277ef26/" + name + ".jpg";
+    image.src = "https://shehabmuhammad.github.io/Game-Of-Cards/docs/" + name + ".jpg";
     image.style.width = "50px";
     image.style.height = "75px";
     image.ondragstart = (ev)=>{drag(ev);}
-
+        
     image.draggable = true;
 
     return image;
@@ -162,7 +138,11 @@ var goop=[]
 if(!sum){
 if(c == 'j'){
 let iter = board.children.length; let elementOrig = document.querySelector( "#"+ data  );
-if(iter == 0) {              board.appendChild(elementOrig); obj.floor.push(data); 
+if(iter == 0) {              
+elementOrig.draggable=false;
+elementOrig.onselect=()=>false;
+elementOrig.ondragstart=()=>false;
+board.appendChild(elementOrig); obj.floor.push(data); 
 handCards.splice(       handCards.indexOf(data)  , 1 );            return;   }
 obj.floor.splice(0, floor.length);
 handCards.splice(    handCards.indexOf( data   ), 1 ); 
@@ -187,7 +167,12 @@ let elementOrig = document.querySelector("#"+data);
 if(togo){  handCards.splice(handCards.indexOf(elementOrig.id),1); elementOrig.parentNode.removeChild(elementOrig);
 if(obj.floor.length == 0) {           let y =document.querySelector('#bsrat'); y.innerHTML = +(y.innerHTML)+1;           }
  }
-else {   handCards.splice(handCards.indexOf(elementOrig.id),1); board.appendChild(elementOrig); floor.push(elementOrig.id);  }
+else {   handCards.splice(handCards.indexOf(elementOrig.id),1); 
+
+elementOrig.draggable=false;
+elementOrig.onselect=()=>false;
+elementOrig.ondragstart=()=>false;
+board.appendChild(elementOrig); floor.push(elementOrig.id);  }
 
 return;
 
@@ -286,6 +271,9 @@ if(bool){
      let c = document.getElementById(data);
 handCards.splice(handCards.indexOf(c.id), 1);
 c.draggable = false; c.ondragover = ()=>{return false;}
+
+c.onselect=()=>false;
+c.ondragstart=()=>false;
     board.appendChild(  c ); 
    }
 else {
@@ -299,30 +287,36 @@ if(obj.floor.length == 0) {           let y =document.querySelector('#bsrat'); y
 
 </script>
         
-    
+        <style>
+        #info {
+            float:right; background: linear-gradient(to right, lightgray, white);
+            width: 15vw; height:20vw; margin-top:-100px;
+                margin-bottom: 30px;
+        }
+
+.card { display: inline-block; background-color: gray; width:100px; height: 150; 
+float:left;  margin-left: 15px; margin-top: 15px; margin-bottom: 50px;} 
+
+@media only screen and (max-width: 720px) {
+
+#board img {width:auto;height:auto;overflow:hidden;}
+#board {height:auto;overflow:hidden;}
+}
+ </style> 
 
 </head>
 <body style="background-color: black;color:white;justify-content: center;align-content: center;">
 
-<header style="background:linear-gradient(to bottom right, lightgray, white);height:5vw;padding-top:1vw;padding-bottom:1vw;"> 
-<div class="container">
-  
-  <a style="display:inline"><h2 style="background-color:rgb(0,0,0,0);margin-left:10px;padding:3% !important;display:inline;width:10% !important;height:10% !important;">Test-Me</h2> </a>  
-
-<span>Search : </span><input style="margin-left:5px !important;display:inline;width:30%;height:15%;padding:1vw;">
-</div>
-
-</header>
-
-
-<div id="enemy" style="padding:20px;background: linear-gradient(to right bottom, gray, lightgray);border-radius: 25px;float:left;margin-left:18vw;">  
+<div id="enemy" style="padding:20px;background: linear-gradient(to right bottom, gray, lightgray);border-radius: 25px;float:left;margin-left: 20vw;">  
 <div><h6><bold style="width:relative;height:relative;"> <span id="opp"> 0 </span>  :عدد ورق خصمك </bold> </h6>  <br/> </div>
       <br/>
     <div><h6><span style="width:relative;height:relative;" >    <span id="oppbsrat"> 0 </span> :عدد بصرات خصمك   </span> </h6> </div>
        <br/>
  </div>
 <div id="hid" style="display:none;"></div>
-<div id="board" style="border:solid brown 3px;background-color:#333; width:40vw;height:40vh; margin-top: 25px; margin-bottom: 15px; margin-left:30vw;margin-right:30vw;"> </div>
+<div id="board" style="border:solid brown 3px;background-color:#333; width:40vw;height:40vh; margin-top: 25px; margin-bottom: 15px; margin-left:30vw;margin-
+
+right:30vw;"> </div>
     
 <div id="handCards" style="background-color: transparent; display:block;width:40vw;margin-left:30vw;margin-right:30vw;">
     <div class="card" id = "first" style="margin:1vw;width:8vw;"></div>
@@ -352,7 +346,9 @@ let sum = obj.floor.length;
 drop(ev);
 let SUM = obj.floor.length;
 if(SUM < sum ) {  let elo =   document.getElementById( "num"  ); elo.innerHTML = +elo.innerHTML + (sum - obj.floor.length)  ;  }
-let r = (Math.random() * (otherCards.length-1))|0;let d = otherCards[r]; let m = createImage( d ); m.style.display="none";document.getElementById("hid").appendChild(m);
+let r = (Math.random() * (otherCards.length-1))|0;let d = otherCards[r]; let m = createImage( d );
+m.draggable = false; m.ondragstart=()=>false;m.onselect=()=>false;
+m.style.display="none";document.getElementById("hid").appendChild(m);
  otherCards.splice(r, 1); console.log(`Computer dropped : ${d}. `);drop(d);
 if( obj.floor.length < SUM ) {  let elo =   document.getElementById( "opp"  ); elo.innerHTML = +elo.innerHTML + (SUM - obj.floor.length)  ;  }
 if( handCards.length == 0 && otherCards.length == 0) {start();}
@@ -365,6 +361,9 @@ if( handCards.length == 0 && otherCards.length == 0) {start();}
     let e = cards[r] ; 
 let c = createImage(e);
 c.draggable = false; c.ondragover = ()=>{return false;}
+
+c.onselect=()=>false;
+c.ondragstart=()=>false;
     Board.appendChild(c);
     obj.floor.push(e);
     cards = cards.filter((e,i)=> i !== r);
@@ -378,7 +377,9 @@ window.location.reload();
  }
 function popup(str){
 
-document.body.innerHTML += (`<div id="popup" style="background-image: linear-gradient(to bottom right, gray, white);padding:1rem;position:absolute;left:30vw;top:20vh;bottom:58vh;border:dotted 3px brown;">
+document.body.innerHTML += (`<div id="popup" style="background-image: linear-gradient(to bottom right, gray, 
+
+white);padding:1rem;position:absolute;left:30vw;top:20vh;bottom:58vh;border:dotted 3px brown;">
 <h1 style="color:#333;"> GameOver. ${ str } the winner! </h1>
 <button style="float:right;height:1.5em;width:16%;color:white;background-color:red;" onclick="delt()">Return</button>
 </div>`);
@@ -428,30 +429,8 @@ let ln = cards.length -1; if(ln <= 0) {return;}
 </script>
     <!-- radio button for you or other , and erase each time -->
 
- <button style="border-radius:100%;width:5vw;height:5vw;background-color:white;position:absolute;float:left;top:85vh;left:1vw;bottom:1vw;overflow:hidden;" onclick="var audio=new Audio('https://upload.wikimedia.org/wikipedia/commons/f/f1/Oceanwavescrushing.ogg');audio.play();"> <span style="width:auto;height:auto;font-size:auto;" id="audio">Play Audio </span> </button>
+ <button style="border-radius:100%;width:5vw;height:5vw;background-color:white;position:absolute;float:left;top:85vh;left:1vw;bottom:1vw" onclick="var audio=new Audio
 
-<footer style="width:100%;height:relative;margin-top:90vh;height:auto;color:white;margin-bottom:0px;">
-<div style="width:100%" class="container footer">
-<div style="height:6vh;width:20%;height:auto;display:inline-block;text-align:center;margin-top:1em;border-right:1px solid white;height:auto;"> 
- <a href="https://www.github.com/ShehabMuhammad/" target="_blank" style="font-size:2em;font-style:oblique;margin-top:1em;"> S. M. </a>
-</div>
-
-<div style="height:6vh;width:79%;display:inline-block;text-align:center;margin-top:1.5em;float:right;margin-bottom:2px;">
-~~ Experiemental Site ~~
-    <div>
-</div>
-<div> </div>
-</div>
-<div style="text-align:center;padding-top:10px;margin-top:2px;">                            
-<hr>
-<!-- <b style="width:100vw;">ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــــ</b>    -->  
-<div class="end" style="margin-top:1em;padding-bottom:3em;"><a href="/"> Home    </a> 
-<a href="About"> About     </a> <a href="contact-us"> Contact Us     </a> 
-<a href="https://www.github.com/ShehabMuhammad/"> Portfolio     </a>   </div></div>
-</div>
-</footer>
-
-
-
+('https://upload.wikimedia.org/wikipedia/commons/f/f1/Oceanwavescrushing.ogg');audio.play();"> Play Audio </button>
 </body>
 </html>
